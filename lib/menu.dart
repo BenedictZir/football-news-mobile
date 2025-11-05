@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:football_news/menu.dart';
+import 'package:football_news/widgets/left_drawer.dart';
+import 'package:football_news/newlist_form.dart';
 class MyHomePage extends StatelessWidget {
   MyHomePage({super.key});
 
@@ -11,7 +14,7 @@ class MyHomePage extends StatelessWidget {
     ItemHomepage("Logout", Icons.logout),
   ];
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {    
     // Scaffold menyediakan struktur dasar halaman dengan AppBar dan body.
     return Scaffold(
       // AppBar adalah bagian atas halaman yang menampilkan judul.
@@ -30,6 +33,7 @@ class MyHomePage extends StatelessWidget {
             .colorScheme
             .primary,
       ),
+      drawer: LeftDrawer(),
       // Body halaman dengan padding di sekelilingnya.
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -156,6 +160,14 @@ class ItemCard extends StatelessWidget {
             ..showSnackBar(
                 SnackBar(content: Text("Kamu telah menekan tombol ${item.name}!"))
             );
+          if (item.name == "Add News") {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const NewsFormPage(),
+              ),
+            );
+          }
         },
         // Container untuk menyimpan Icon dan Text
         child: Container(
